@@ -15,7 +15,7 @@ class Persona
         $sql = "select * from Personas";
         $queryPersonas = $con->db->prepare($sql);
         $queryPersonas->execute();
-        $queryPersonas->setFetchMode(PDO::FETCH_CLASS, 'Personas');
+        $queryPersonas->setFetchMode(PDO::FETCH_CLASS, 'Persona');
 
         $ListPersonasDevolver = array();
 
@@ -28,7 +28,7 @@ class Persona
     public static function Buscar($id)
     {
         $con = DataBase::getInstance();
-        $sql = "select * from personas where Id=:p1";
+        $sql = "select * from Personas where Id=:p1";
         $queryPersonas = $con->db->prepare($sql);
         $params = array("p1" => $id);
         $queryPersonas->execute($params);
@@ -42,7 +42,7 @@ class Persona
     public function Agregar()
     {
         $con = DataBase::getInstance();
-        $sql = "insert into personas (Nombre,Apellido,NroDoc,Direccion,Email) values (:p1,:p2,:p3,:p4,:p5)";
+        $sql = "insert into Personas (Nombre,Apellido,NroDoc,Direccion,Email) values (:p1,:p2,:p3,:p4,:p5)";
         $queryPersonas = $con->db->prepare($sql);
         $params = array("p1" => $this->Nombre, "p2" => $this->Apellido, "p3" => $this->NroDoc, "p4" => $this->Direccion, "p5" => $this->Email);
         $queryPersonas->execute($params);
@@ -56,7 +56,7 @@ class Persona
         Apellido = :p2,
         NroDoc = :p3,
         Direccion = :p4,
-        Email = :p5,
+        Email = :p5
         where id = :p6";
         $persona = $con->db->prepare($sql);
         $params = array("p1" => $this->Nombre, "p2" => $this->Apellido, "p3" => $this->NroDoc, "p4" => $this->Direccion, "p5" => $this->Email, "p6" => $this->Id);
